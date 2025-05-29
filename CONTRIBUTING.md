@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD030 -->
 
-# Contributing to Flowise
+# Contributing to Daisy
 
 English | [中文](./i18n/CONTRIBUTING-ZH.md)
 
@@ -8,23 +8,23 @@ We appreciate any form of contributions.
 
 ## ⭐ Star
 
-Star and share the [Github Repo](https://github.com/FlowiseAI/Flowise).
+Star and share the [Github Repo](https://github.com/DaisyAI/Daisy).
 
 ## 🙋 Q&A
 
-Search up for any questions in [Q&A section](https://github.com/FlowiseAI/Flowise/discussions/categories/q-a), if you can't find one, don't hesitate to create one. It might helps others that have similar question.
+Search up for any questions in [Q&A section](https://github.com/DaisyAI/Daisy/discussions/categories/q-a), if you can't find one, don't hesitate to create one. It might helps others that have similar question.
 
 ## 🙌 Share Chatflow
 
-Yes! Sharing how you use Flowise is a way of contribution. Export your chatflow as JSON, attach a screenshot and share it in [Show and Tell section](https://github.com/FlowiseAI/Flowise/discussions/categories/show-and-tell).
+Yes! Sharing how you use Daisy is a way of contribution. Export your chatflow as JSON, attach a screenshot and share it in [Show and Tell section](https://github.com/DaisyAI/Daisy/discussions/categories/show-and-tell).
 
 ## 💡 Ideas
 
-Ideas are welcome such as new feature, apps integration, and blockchain networks. Submit in [Ideas section](https://github.com/FlowiseAI/Flowise/discussions/categories/ideas).
+Ideas are welcome such as new feature, apps integration, and blockchain networks. Submit in [Ideas section](https://github.com/DaisyAI/Daisy/discussions/categories/ideas).
 
 ## 🐞 Report Bugs
 
-Found an issue? [Report it](https://github.com/FlowiseAI/Flowise/issues/new/choose).
+Found an issue? [Report it](https://github.com/DaisyAI/Daisy/issues/new/choose).
 
 ## 👨‍💻 Contribute to Code
 
@@ -36,7 +36,7 @@ Not sure what to contribute? Some ideas:
 
 ### Developers
 
-Flowise has 3 different modules in a single mono repository.
+Daisy has 3 different modules in a single mono repository.
 
 -   `server`: Node backend to serve API logics
 -   `ui`: React frontend
@@ -51,7 +51,7 @@ Flowise has 3 different modules in a single mono repository.
 
 #### Step by step
 
-1. Fork the official [Flowise Github Repository](https://github.com/FlowiseAI/Flowise).
+1. Fork the official [Daisy Github Repository](https://github.com/DaisyAI/Daisy).
 
 2. Clone your forked repository.
 
@@ -65,7 +65,7 @@ Flowise has 3 different modules in a single mono repository.
 5. Go into repository folder
 
     ```bash
-    cd Flowise
+    cd Daisy
     ```
 
 6. Install all dependencies of all modules:
@@ -114,30 +114,30 @@ Flowise has 3 different modules in a single mono repository.
 
     to make sure everything works fine in production.
 
-11. Commit code and submit Pull Request from forked branch pointing to [Flowise master](https://github.com/FlowiseAI/Flowise/tree/master).
+11. Commit code and submit Pull Request from forked branch pointing to [Daisy master](https://github.com/DaisyAI/Daisy/tree/master).
 
 ## 🌱 Env Variables
 
-Flowise support different environment variables to configure your instance. You can specify the following variables in the `.env` file inside `packages/server` folder. Read [more](https://docs.flowiseai.com/environment-variables)
+Daisy support different environment variables to configure your instance. You can specify the following variables in the `.env` file inside `packages/server` folder. Read [more](https://docs.daisyai.com/environment-variables)
 
 | Variable                           | Description                                                                      | Type                                             | Default                             |
 | ---------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------ | ----------------------------------- |
-| PORT                               | The HTTP port Flowise runs on                                                    | Number                                           | 3000                                |
+| PORT                               | The HTTP port Daisy runs on                                                    | Number                                           | 3000                                |
 | CORS_ORIGINS                       | The allowed origins for all cross-origin HTTP calls                              | String                                           |                                     |
 | IFRAME_ORIGINS                     | The allowed origins for iframe src embedding                                     | String                                           |                                     |
 | FLOWISE_USERNAME                   | Username to login                                                                | String                                           |                                     |
 | FLOWISE_PASSWORD                   | Password to login                                                                | String                                           |                                     |
 | FLOWISE_FILE_SIZE_LIMIT            | Upload File Size Limit                                                           | String                                           | 50mb                                |
 | DEBUG                              | Print logs from components                                                       | Boolean                                          |                                     |
-| LOG_PATH                           | Location where log files are stored                                              | String                                           | `your-path/Flowise/logs`            |
+| LOG_PATH                           | Location where log files are stored                                              | String                                           | `your-path/Daisy/logs`            |
 | LOG_LEVEL                          | Different levels of logs                                                         | Enum String: `error`, `info`, `verbose`, `debug` | `info`                              |
 | LOG_JSON_SPACES                    | Spaces to beautify JSON logs                                                     |                                                  | 2                                   |
 | APIKEY_STORAGE_TYPE                | To store api keys on a JSON file or database. Default is `json`                  | Enum String: `json`, `db`                        | `json`                              |
-| APIKEY_PATH                        | Location where api keys are saved when `APIKEY_STORAGE_TYPE` is `json`           | String                                           | `your-path/Flowise/packages/server` |
+| APIKEY_PATH                        | Location where api keys are saved when `APIKEY_STORAGE_TYPE` is `json`           | String                                           | `your-path/Daisy/packages/server` |
 | TOOL_FUNCTION_BUILTIN_DEP          | NodeJS built-in modules to be used for Tool Function                             | String                                           |                                     |
 | TOOL_FUNCTION_EXTERNAL_DEP         | External modules to be used for Tool Function                                    | String                                           |                                     |
-| DATABASE_TYPE                      | Type of database to store the flowise data                                       | Enum String: `sqlite`, `mysql`, `postgres`       | `sqlite`                            |
-| DATABASE_PATH                      | Location where database is saved (When DATABASE_TYPE is sqlite)                  | String                                           | `your-home-dir/.flowise`            |
+| DATABASE_TYPE                      | Type of database to store the daisy data                                       | Enum String: `sqlite`, `mysql`, `postgres`       | `sqlite`                            |
+| DATABASE_PATH                      | Location where database is saved (When DATABASE_TYPE is sqlite)                  | String                                           | `your-home-dir/.daisy`            |
 | DATABASE_HOST                      | Host URL or IP address (When DATABASE_TYPE is not sqlite)                        | String                                           |                                     |
 | DATABASE_PORT                      | Database port (When DATABASE_TYPE is not sqlite)                                 | String                                           |                                     |
 | DATABASE_USER                      | Database username (When DATABASE_TYPE is not sqlite)                             | String                                           |                                     |
@@ -145,11 +145,11 @@ Flowise support different environment variables to configure your instance. You 
 | DATABASE_NAME                      | Database name (When DATABASE_TYPE is not sqlite)                                 | String                                           |                                     |
 | DATABASE_SSL_KEY_BASE64            | Database SSL client cert in base64 (takes priority over DATABASE_SSL)            | Boolean                                          | false                               |
 | DATABASE_SSL                       | Database connection overssl (When DATABASE_TYPE is postgre)                      | Boolean                                          | false                               |
-| SECRETKEY_PATH                     | Location where encryption key (used to encrypt/decrypt credentials) is saved     | String                                           | `your-path/Flowise/packages/server` |
+| SECRETKEY_PATH                     | Location where encryption key (used to encrypt/decrypt credentials) is saved     | String                                           | `your-path/Daisy/packages/server` |
 | FLOWISE_SECRETKEY_OVERWRITE        | Encryption key to be used instead of the key stored in SECRETKEY_PATH            | String                                           |                                     |
 | MODEL_LIST_CONFIG_JSON             | File path to load list of models from your local config file                     | String                                           | `/your_model_list_config_file_path` |
 | STORAGE_TYPE                       | Type of storage for uploaded files. default is `local`                           | Enum String: `s3`, `local`, `gcs`                | `local`                             |
-| BLOB_STORAGE_PATH                  | Local folder path where uploaded files are stored when `STORAGE_TYPE` is `local` | String                                           | `your-home-dir/.flowise/storage`    |
+| BLOB_STORAGE_PATH                  | Local folder path where uploaded files are stored when `STORAGE_TYPE` is `local` | String                                           | `your-home-dir/.daisy/storage`    |
 | S3_STORAGE_BUCKET_NAME             | Bucket name to hold the uploaded files when `STORAGE_TYPE` is `s3`               | String                                           |                                     |
 | S3_STORAGE_ACCESS_KEY_ID           | AWS Access Key                                                                   | String                                           |                                     |
 | S3_STORAGE_SECRET_ACCESS_KEY       | AWS Secret Key                                                                   | String                                           |                                     |
@@ -166,17 +166,17 @@ Flowise support different environment variables to configure your instance. You 
 You can also specify the env variables when using `npx`. For example:
 
 ```
-npx flowise start --PORT=3000 --DEBUG=true
+npx daisy start --PORT=3000 --DEBUG=true
 ```
 
 ## 📖 Contribute to Docs
 
-[Flowise Docs](https://github.com/FlowiseAI/FlowiseDocs)
+[Daisy Docs](https://github.com/DaisyAI/DaisyDocs)
 
 ## 🏷️ Pull Request process
 
-A member of the FlowiseAI team will automatically be notified/assigned when you open a pull request. You can also reach out to us on [Discord](https://discord.gg/jbaHfsRVBW).
+A member of the DaisyAI team will automatically be notified/assigned when you open a pull request. You can also reach out to us on [Discord](https://discord.gg/jbaHfsRVBW).
 
 ## 📜 Code of Conduct
 
-This project and everyone participating in it are governed by the Code of Conduct which can be found in the [file](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to hello@flowiseai.com.
+This project and everyone participating in it are governed by the Code of Conduct which can be found in the [file](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to hello@daisyai.com.

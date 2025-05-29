@@ -1,6 +1,6 @@
 # AI Agent Orchestration Platform
 
-This platform is built on top of Flowise, extending it to support AI agent orchestration with Google ADK, Composio tools, and scheduled triggers.
+This platform is built on top of Daisy, extending it to support AI agent orchestration with Google ADK, Composio tools, and scheduled triggers. ![Daisy Logo](daisy.png)
 
 ## Features
 
@@ -27,12 +27,12 @@ This platform is built on top of Flowise, extending it to support AI agent orche
 ## Architecture
 
 ### Frontend
-- React-based UI (extended from Flowise UI)
+- React-based UI (extended from Daisy UI)
 - FullCalendar integration for calendar view
 - Form-based trigger configuration
 
 ### Backend
-- Node.js server (extended from Flowise server)
+- Node.js server (extended from Daisy server)
 - TypeORM for database access
 - node-cron for scheduling
 
@@ -74,8 +74,8 @@ pnpm dev
 
 ### Project Structure
 - `/packages/server` - Backend server
-- `/packages/ui` - Frontend UI
-- `/packages/components` - Flowise components
+- `/packages/ui` - Daisy UI
+- `/packages/components` - Daisy components
 
 ### Key Components
 - `TriggerService` - Manages triggers in the database
@@ -97,7 +97,7 @@ pnpm dev
 4. Configure schedule (one-time or recurring)
 
 ### External Triggers
-Use the webhook endpoint to trigger flows from external systems:
+Use the webhook endpoint to trigger Daisy from external systems:
 ```
 POST /api/v1/triggers/:id/webhook
 ```

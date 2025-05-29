@@ -1,40 +1,40 @@
 <!-- markdownlint-disable MD030 -->
 
 <p align="center">
-<img src="https://github.com/FlowiseAI/Flowise/blob/main/images/flowise_white.svg#gh-light-mode-only">
-<img src="https://github.com/FlowiseAI/Flowise/blob/main/images/flowise_dark.svg#gh-dark-mode-only">
+<img src="https://github.com/DaisyAI/Daisy/blob/main/images/daisy_white.svg#gh-light-mode-only">
+<img src="https://github.com/DaisyAI/Daisy/blob/main/images/daisy_dark.svg#gh-dark-mode-only">
 </p>
 
-[![Release Notes](https://img.shields.io/github/release/FlowiseAI/Flowise)](https://github.com/FlowiseAI/Flowise/releases)
+[![Release Notes](https://img.shields.io/github/release/DaisyAI/Daisy)](https://github.com/DaisyAI/Daisy/releases)
 [![Discord](https://img.shields.io/discord/1087698854775881778?label=Discord&logo=discord)](https://discord.gg/jbaHfsRVBW)
-[![Twitter Follow](https://img.shields.io/twitter/follow/FlowiseAI?style=social)](https://twitter.com/FlowiseAI)
-[![GitHub star chart](https://img.shields.io/github/stars/FlowiseAI/Flowise?style=social)](https://star-history.com/#FlowiseAI/Flowise)
-[![GitHub fork](https://img.shields.io/github/forks/FlowiseAI/Flowise?style=social)](https://github.com/FlowiseAI/Flowise/fork)
+[![Twitter Follow](https://img.shields.io/twitter/follow/DaisyAI?style=social)](https://twitter.com/DaisyAI)
+[![GitHub star chart](https://img.shields.io/github/stars/DaisyAI/Daisy?style=social)](https://star-history.com/#DaisyAI/Daisy)
+[![GitHub fork](https://img.shields.io/github/forks/DaisyAI/Daisy?style=social)](https://github.com/DaisyAI/Daisy/fork)
 
 [English](../README.md) | 繁體中文 | [简体中文](./README-ZH.md) | [日本語](./README-JA.md) | [한국어](./README-KR.md)
 
 <h3>可視化建構 AI/LLM 流程</h3>
-<a href="https://github.com/FlowiseAI/Flowise">
-<img width="100%" src="https://github.com/FlowiseAI/Flowise/blob/main/images/flowise_agentflow.gif?raw=true"></a>
+<a href="https://github.com/DaisyAI/Daisy">
+<img width="100%" src="https://github.com/DaisyAI/Daisy/blob/main/images/daisy_agentflow.gif?raw=true"></a>
 
 ## ⚡ 快速開始
 
 下載並安裝 [NodeJS](https://nodejs.org/en/download) >= 18.15.0
 
-1. 安裝 Flowise
+1. 安裝 Daisy
     ```bash
-    npm install -g flowise
+    npm install -g daisy
     ```
-2. 啟動 Flowise
+2. 啟動 Daisy
 
     ```bash
-    npx flowise start
+    npx daisy start
     ```
 
     使用用戶名和密碼
 
     ```bash
-    npx flowise start --FLOWISE_USERNAME=user --FLOWISE_PASSWORD=1234
+    npx daisy start --FLOWISE_USERNAME=user --FLOWISE_PASSWORD=1234
     ```
 
 3. 打開 [http://localhost:3000](http://localhost:3000)
@@ -43,7 +43,7 @@
 
 ### Docker Compose
 
-1. 克隆 Flowise 項目
+1. 克隆 Daisy 項目
 2. 進入項目根目錄的 `docker` 文件夾
 3. 複製 `.env.example` 文件，粘貼到相同位置，並重命名為 `.env` 文件
 4. `docker compose up -d`
@@ -54,22 +54,22 @@
 
 1. 本地構建映像：
     ```bash
-    docker build --no-cache -t flowise .
+    docker build --no-cache -t daisy .
     ```
 2. 運行映像：
 
     ```bash
-    docker run -d --name flowise -p 3000:3000 flowise
+    docker run -d --name daisy -p 3000:3000 daisy
     ```
 
 3. 停止映像：
     ```bash
-    docker stop flowise
+    docker stop daisy
     ```
 
 ## 👨‍💻 開發者
 
-Flowise 在單個 mono 存儲庫中有 3 個不同的模塊。
+Daisy 在單個 mono 存儲庫中有 3 個不同的模塊。
 
 -   `server`: 提供 API 邏輯的 Node 後端
 -   `ui`: React 前端
@@ -88,13 +88,13 @@ Flowise 在單個 mono 存儲庫中有 3 個不同的模塊。
 1.  克隆存儲庫
 
     ```bash
-    git clone https://github.com/FlowiseAI/Flowise.git
+    git clone https://github.com/DaisyAI/Daisy.git
     ```
 
 2.  進入存儲庫文件夾
 
     ```bash
-    cd Flowise
+    cd Daisy
     ```
 
 3.  安裝所有模塊的所有依賴項：
@@ -149,43 +149,43 @@ FLOWISE_PASSWORD=1234
 
 ## 🌱 環境變量
 
-Flowise 支持不同的環境變量來配置您的實例。您可以在 `packages/server` 文件夾中的 `.env` 文件中指定以下變量。閱讀 [更多](https://github.com/FlowiseAI/Flowise/blob/main/CONTRIBUTING.md#-env-variables)
+Daisy 支持不同的環境變量來配置您的實例。您可以在 `packages/server` 文件夾中的 `.env` 文件中指定以下變量。閱讀 [更多](https://github.com/DaisyAI/Daisy/blob/main/CONTRIBUTING.md#-env-variables)
 
 ## 📖 文檔
 
-[Flowise 文檔](https://docs.flowiseai.com/)
+[Daisy 文檔](https://docs.daisyai.com/)
 
 ## 🌐 自我托管
 
-在您現有的基礎設施中部署 Flowise 自我托管，我們支持各種 [部署](https://docs.flowiseai.com/configuration/deployment)
+在您現有的基礎設施中部署 Daisy 自我托管，我們支持各種 [部署](https://docs.daisyai.com/configuration/deployment)
 
--   [AWS](https://docs.flowiseai.com/configuration/deployment/aws)
--   [Azure](https://docs.flowiseai.com/configuration/deployment/azure)
--   [Digital Ocean](https://docs.flowiseai.com/configuration/deployment/digital-ocean)
--   [GCP](https://docs.flowiseai.com/configuration/deployment/gcp)
--   [阿里雲](https://computenest.console.aliyun.com/service/instance/create/default?type=user&ServiceName=Flowise社区版)
+-   [AWS](https://docs.daisyai.com/configuration/deployment/aws)
+-   [Azure](https://docs.daisyai.com/configuration/deployment/azure)
+-   [Digital Ocean](https://docs.daisyai.com/configuration/deployment/digital-ocean)
+-   [GCP](https://docs.daisyai.com/configuration/deployment/gcp)
+-   [阿里雲](https://computenest.console.aliyun.com/service/instance/create/default?type=user&ServiceName=Daisy社区版)
 -   <details>
       <summary>其他</summary>
 
-    -   [Railway](https://docs.flowiseai.com/configuration/deployment/railway)
+    -   [Railway](https://docs.daisyai.com/configuration/deployment/railway)
 
         [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/pn4G8S?referralCode=WVNPD9)
 
-    -   [Render](https://docs.flowiseai.com/configuration/deployment/render)
+    -   [Render](https://docs.daisyai.com/configuration/deployment/render)
 
-        [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://docs.flowiseai.com/configuration/deployment/render)
+        [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://docs.daisyai.com/configuration/deployment/render)
 
-    -   [HuggingFace Spaces](https://docs.flowiseai.com/deployment/hugging-face)
+    -   [HuggingFace Spaces](https://docs.daisyai.com/deployment/hugging-face)
 
-        <a href="https://huggingface.co/spaces/FlowiseAI/Flowise"><img src="https://huggingface.co/datasets/huggingface/badges/raw/main/open-in-hf-spaces-sm.svg" alt="HuggingFace Spaces"></a>
+        <a href="https://huggingface.co/spaces/DaisyAI/Daisy"><img src="https://huggingface.co/datasets/huggingface/badges/raw/main/open-in-hf-spaces-sm.svg" alt="HuggingFace Spaces"></a>
 
-    -   [Elestio](https://elest.io/open-source/flowiseai)
+    -   [Elestio](https://elest.io/open-source/daisyai)
 
-        [![Deploy on Elestio](https://elest.io/images/logos/deploy-to-elestio-btn.png)](https://elest.io/open-source/flowiseai)
+        [![Deploy on Elestio](https://elest.io/images/logos/deploy-to-elestio-btn.png)](https://elest.io/open-source/daisyai)
 
-    -   [Sealos](https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dflowise)
+    -   [Sealos](https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Ddaisy)
 
-        [![](https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg)](https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dflowise)
+        [![](https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg)](https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Ddaisy)
 
     -   [RepoCloud](https://repocloud.io/details/?app_id=29)
 
@@ -193,24 +193,24 @@ Flowise 支持不同的環境變量來配置您的實例。您可以在 `package
 
       </details>
 
-## ☁️ Flowise 雲
+## ☁️ Daisy 雲
 
-[開始使用 Flowise 雲](https://flowiseai.com/)
+[開始使用 Daisy 雲](https://daisyai.com/)
 
 ## 🙋 支持
 
-隨時在 [討論](https://github.com/FlowiseAI/Flowise/discussions) 中提出任何問題、提出問題和請求新功能
+隨時在 [討論](https://github.com/DaisyAI/Daisy/discussions) 中提出任何問題、提出問題和請求新功能
 
 ## 🙌 貢獻
 
 感謝這些出色的貢獻者
 
-<a href="https://github.com/FlowiseAI/Flowise/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=FlowiseAI/Flowise" />
+<a href="https://github.com/DaisyAI/Daisy/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=DaisyAI/Daisy" />
 </a>
 
 請參閱 [貢獻指南](CONTRIBUTING.md)。如果您有任何問題或問題，請通過 [Discord](https://discord.gg/jbaHfsRVBW) 與我們聯繫。
-[![Star History Chart](https://api.star-history.com/svg?repos=FlowiseAI/Flowise&type=Timeline)](https://star-history.com/#FlowiseAI/Flowise&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=DaisyAI/Daisy&type=Timeline)](https://star-history.com/#DaisyAI/Daisy&Date)
 
 ## 📄 許可證
 

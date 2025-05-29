@@ -19,7 +19,7 @@ class ComposioTool implements INode {
         this.name = 'composioTool'
         this.version = 1.0
         this.type = 'ComposioTool'
-        this.icon = 'composio.svg'
+        this.icon = 'composioTool.svg'
         this.category = 'Tools'
         this.description = 'Execute Composio API actions as tools'
         this.baseClasses = [this.type, ...getBaseClasses(DynamicTool)]

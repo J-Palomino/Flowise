@@ -21,11 +21,11 @@
 
 [NodeJS](https://nodejs.org/en/download) >= 18.15.0 をダウンロードしてインストール
 
-1. Flowise のインストール
+1. Daisy のインストール
     ```bash
     npm install -g flowise
     ```
-2. Flowise の実行
+2. Daisy の実行
 
     ```bash
     npx flowise start
@@ -34,7 +34,7 @@
     ユーザー名とパスワードを入力
 
     ```bash
-    npx flowise start --FLOWISE_USERNAME=user --FLOWISE_PASSWORD=1234
+    npx daisy start --DAISY_USERNAME=user --DAISY_PASSWORD=1234
     ```
 
 3. [http://localhost:3000](http://localhost:3000) を開く
@@ -138,7 +138,7 @@ FLOWISE_PASSWORD=1234
 
 ## 🌱 環境変数
 
-Flowise は、インスタンスを設定するためのさまざまな環境変数をサポートしています。`packages/server` フォルダ内の `.env` ファイルで以下の変数を指定することができる。[続き](https://github.com/FlowiseAI/Flowise/blob/main/CONTRIBUTING.md#-env-variables)を読む
+Daisy は、インスタンスを設定するためのさまざまな環境変数をサポートしています。`packages/server` フォルダ内の `.env` ファイルで以下の変数を指定することができる。[続き](https://github.com/FlowiseAI/Flowise/blob/main/CONTRIBUTING.md#-env-variables)を読む
 
 ## 📖 ドキュメント
 

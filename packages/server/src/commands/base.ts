@@ -12,9 +12,9 @@ enum EXIT_CODE {
 
 export abstract class BaseCommand extends Command {
     static flags = {
-        FLOWISE_USERNAME: Flags.string(),
-        FLOWISE_PASSWORD: Flags.string(),
-        FLOWISE_FILE_SIZE_LIMIT: Flags.string(),
+        DAISY_USERNAME: Flags.string(),
+        DAISY_PASSWORD: Flags.string(),
+        DAISY_FILE_SIZE_LIMIT: Flags.string(),
         PORT: Flags.string(),
         CORS_ORIGINS: Flags.string(),
         IFRAME_ORIGINS: Flags.string(),
