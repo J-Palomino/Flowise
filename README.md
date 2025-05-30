@@ -19,6 +19,10 @@ English | [繁體中文](./i18n/README-TW.md) | [简体中文](./i18n/README-ZH.
 
 ## ⚡Quick Start
 
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/flowise?referralCode=flowise)
+
+[See Railway deployment instructions](./README-RAILWAY.md)
+
 Download and Install [NodeJS](https://nodejs.org/en/download) >= 18.15.0
 
 1. Install Daisy
