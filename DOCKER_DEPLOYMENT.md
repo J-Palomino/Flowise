@@ -8,6 +8,18 @@ For each branch in the repository, a Docker image is automatically built and pus
 - `flowiseai/flowise:<branch-name>` - Latest build from the branch
 - `flowiseai/flowise:<branch-name>-<commit-sha>` - Specific commit build
 
+### Setting Up Docker Hub Secrets
+
+To enable pushing images to Docker Hub, you need to set up the following secrets in your GitHub repository:
+
+1. Go to your repository on GitHub
+2. Navigate to Settings > Secrets and variables > Actions
+3. Add the following secrets:
+   - `DOCKERHUB_USERNAME`: Your Docker Hub username
+   - `DOCKERHUB_TOKEN`: Your Docker Hub access token (not your password)
+
+If these secrets are not set, the GitHub Action will still build the image locally to verify it works, but it won't push to Docker Hub.
+
 ## Deploying with Docker Compose
 
 ### Using the Branch-Specific Image

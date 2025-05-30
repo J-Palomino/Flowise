@@ -29,6 +29,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+        # Make this step optional so the workflow doesn't fail if secrets aren't set
+        continue-on-error: true
+        id: docker_login
       
       - name: Build and push
         uses: docker/build-push-action@v5.3.0
@@ -38,7 +41,16 @@ jobs:
           build-args: |
             NODE_VERSION=20
           platforms: linux/amd64,linux/arm64
-          push: true
+          # Only push if Docker Hub login was successful
+          push: ${{ steps.docker_login.outcome == 'success' }}
           tags: |
             flowiseai/flowise:${{ env.BRANCH_NAME }}
             flowiseai/flowise:${{ env.BRANCH_NAME }}-${{ github.sha }}
+          
+      # Always build the image locally to verify it works, even if we can't push to Docker Hub
+      - name: Build image locally
+        if: steps.docker_login.outcome != 'success'
+        run: |
+          echo "Docker Hub login failed or credentials not provided."
+          echo "Building image locally to verify it works..."
+          docker build -t flowiseai/flowise:local -f ./docker/Dockerfile.source .
