@@ -22,9 +22,6 @@ COPY packages/ui/package.json ./packages/ui/
 COPY packages/components/package.json ./packages/components/
 COPY packages/server/package.json ./packages/server/
 COPY packages/api-documentation/package.json ./packages/api-documentation/
-
-# Create empty api directory with package.json
-RUN mkdir -p packages/api
 COPY packages/api/package.json ./packages/api/
 
 # Copy source code
