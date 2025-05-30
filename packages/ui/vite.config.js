@@ -25,6 +25,7 @@ export default defineConfig(async ({ mode }) => {
         resolve: {
             alias: {
                 '@': resolve(__dirname, 'src'),
+                'ui-component': resolve(__dirname, 'src/ui-component'),
                 '@codemirror/state': resolve(__dirname, '../../node_modules/@codemirror/state'),
                 '@codemirror/view': resolve(__dirname, '../../node_modules/@codemirror/view'),
                 '@codemirror/language': resolve(__dirname, '../../node_modules/@codemirror/language'),
