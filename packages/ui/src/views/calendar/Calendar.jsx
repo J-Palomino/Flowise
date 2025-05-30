@@ -59,18 +59,23 @@ const Calendar = () => {
                 }
                 
                 // Handle different trigger types
-                if (trigger.type === 'schedule' && config) {
-                    if (config.dateTime) {
+                if (trigger.type === 'calendar' && config) {
+                    if (config.schedule === 'once' && config.date) {
                         // One-time schedule
-                        eventProps.start = new Date(config.dateTime)
-                        eventProps.end = new Date(new Date(config.dateTime).getTime() + 30 * 60000) // Add 30 minutes
-                    } else if (config.cronExpression) {
+                        const triggerDate = new Date(config.date);
+                        if (config.time) {
+                            const [hours, minutes] = config.time.split(':').map(Number);
+                            triggerDate.setHours(hours, minutes, 0, 0);
+                        }
+                        eventProps.start = triggerDate;
+                        eventProps.end = new Date(triggerDate.getTime() + 30 * 60000); // Add 30 minutes
+                    } else if (config.schedule === 'recurring') {
                         // Recurring schedule - show as all-day event
-                        eventProps.allDay = true
-                        eventProps.start = new Date()
-                        eventProps.title = `${trigger.name} (Recurring)`
-                        eventProps.backgroundColor = theme.palette.secondary.main
-                        eventProps.borderColor = theme.palette.secondary.dark
+                        eventProps.allDay = true;
+                        eventProps.start = new Date();
+                        eventProps.title = `${trigger.name} (${config.repeat || 'Recurring'})`;
+                        eventProps.backgroundColor = theme.palette.secondary.main;
+                        eventProps.borderColor = theme.palette.secondary.dark;
                     }
                 } else if (trigger.type === 'webhook') {
                     // Webhook triggers - show as all-day event

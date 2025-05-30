@@ -1,11 +1,9 @@
 import { DataSource, Repository } from 'typeorm'
 import { Trigger } from '../../database/entities/Trigger'
 import { TriggerEvent } from '../../database/entities/TriggerEvent'
-// import { ChatFlowService } from './chatflows' // Module not found or not exported
 import { ChatFlow } from '../../database/entities/ChatFlow'
 import axios from 'axios'
 import { ICommonObject } from '../../Interface'
-// import { getServerUrl } from '../../utils' // Function not found in utils
 
 export class TriggerService {
     private triggerRepository: Repository<Trigger>
