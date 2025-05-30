@@ -113,13 +113,18 @@ export class TriggerService {
         try {
             // Execute the chatflow
             // const serverUrl = getServerUrl() // Function not found in utils
-            const serverUrl = process.env.FLOWISE_BASE_URL || 'http://localhost:3000' // Fallback to environment variable or default
+            const serverUrl = process.env.FLOWISE_BASE_URL || 
+                              process.env.SERVER_URL || 
+                              'http://localhost:3000' // Fallback to environment variables or default
+            
+            // Add internal request header to bypass authentication
             const response = await axios.post(
                 `${serverUrl}/api/v1/prediction/${trigger.chatflowId}`,
                 payload,
                 {
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'x-request-from': 'internal'
                     }
                 }
             )
