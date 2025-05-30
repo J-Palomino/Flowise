@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+  flowise:
+    image: flowiseai/flowise:${BRANCH_NAME:-refactor-ux}
+    restart: always
+    environment:
+      - PORT=12000
+      - DAISY_USERNAME=admin
+      - DAISY_PASSWORD=password
+      - DATABASE_TYPE=sqlite
+      - DATABASE_URL=file:./database.sqlite
+      - CORS_ORIGIN=*
+      - IFRAME_ORIGINS=*
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+    ports:
+      - "12000:12000"
+    volumes:
+      - ~/.flowise:/root/.flowise
+    command: ["node", "packages/server/dist/index.js"]

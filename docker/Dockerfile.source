@@ -1,0 +1,57 @@
+ARG NODE_VERSION=20
+FROM node:${NODE_VERSION}-alpine AS builder
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json ./
+COPY packages ./packages/
+COPY lerna.json ./
+COPY tsconfig.json ./
+COPY turbo.json ./
+
+# Install dependencies and build
+RUN npm install
+RUN npm run build
+
+# Stage 2: Runtime stage
+FROM node:${NODE_VERSION}-alpine
+
+WORKDIR /app
+
+# Install runtime dependencies
+RUN apk add --no-cache chromium git python3 py3-pip make g++ build-base cairo-dev pango-dev curl
+
+# Set the environment variable for Puppeteer to find Chromium
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
+# Copy built files from builder stage
+COPY --from=builder /app/packages/ui/dist /app/packages/ui/dist
+COPY --from=builder /app/packages/components/dist /app/packages/components/dist
+COPY --from=builder /app/packages/api/dist /app/packages/api/dist
+COPY --from=builder /app/packages/server/dist /app/packages/server/dist
+
+# Copy package files
+COPY package.json ./
+COPY packages/ui/package.json ./packages/ui/
+COPY packages/components/package.json ./packages/components/
+COPY packages/api/package.json ./packages/api/
+COPY packages/server/package.json ./packages/server/
+
+# Install production dependencies only
+RUN npm install --production
+
+# Set environment variables
+ENV PORT=12000
+ENV DAISY_USERNAME=admin
+ENV DAISY_PASSWORD=password
+ENV DATABASE_TYPE=sqlite
+ENV DATABASE_URL=file:./database.sqlite
+ENV CORS_ORIGIN=*
+ENV IFRAME_ORIGINS=*
+
+# Expose the port
+EXPOSE 12000
+
+# Start the server
+CMD ["node", "packages/server/dist/index.js"]
