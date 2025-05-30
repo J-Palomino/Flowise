@@ -56,6 +56,8 @@ Download and Install [NodeJS](https://nodejs.org/en/download) >= 18.15.0
 
 ### Docker Image
 
+#### Build Locally
+
 1. Build the image locally:
     ```bash
     docker build --no-cache -t daisy .
@@ -70,6 +72,26 @@ Download and Install [NodeJS](https://nodejs.org/en/download) >= 18.15.0
     ```bash
     docker stop daisy
     ```
+
+#### Use GitHub Container Registry
+
+You can also pull the pre-built image from GitHub Container Registry:
+
+```bash
+docker pull ghcr.io/j-palomino/flowise:latest
+```
+
+Run the image:
+
+```bash
+docker run -d --name flowise -p 3000:3000 ghcr.io/j-palomino/flowise:latest
+```
+
+Available tags:
+- `latest`: Latest stable release
+- `main`: Latest build from the main branch
+- `refactor-ux`: Latest build from the refactor-ux branch
+- `v*.*.*`: Specific version releases
 
 ## 👨‍💻 Developers
 
