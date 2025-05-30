@@ -3,6 +3,7 @@ import { Trigger } from '../database/entities/Trigger'
 import { TriggerEvent } from '../database/entities/TriggerEvent'
 import { DataSource } from 'typeorm'
 import { IChatFlow } from '../Interface'
+import { parseExpression } from 'cron-parser'
 // import { ChatFlowService } from './chatflows' // Module not found or not exported
 
 export class TriggerService {
@@ -35,6 +36,19 @@ export class TriggerService {
     }
 
     async createTrigger(triggerData: Partial<Trigger>): Promise<Trigger> {
+        // Validate cron expression if type is cron
+        if (triggerData.type === 'cron') {
+            const config = triggerData.config as any;
+            if (!config || typeof config !== 'object' || !config.cronExpression || typeof config.cronExpression !== 'string') {
+                throw new Error('Missing or invalid cronExpression in config for cron trigger');
+            }
+            try {
+                parseExpression((triggerData.config as any).cronExpression);
+            } catch (e: any) {
+                throw new Error(`Invalid cron expression format: ${(triggerData.config as any).cronExpression} - ${e.message}`);
+            }
+        }
+
         // Validate chatflow exists
         /* // Commenting out ChatFlowService validation due to missing ChatFlowService
         if (triggerData.chatflowId) {
@@ -55,18 +69,34 @@ export class TriggerService {
     }
 
     async updateTrigger(id: string, triggerData: Partial<Trigger>): Promise<Trigger> {
-        const trigger = await this.getTriggerById(id)
+        const trigger = await this.getTriggerById(id);
         if (!trigger) {
-            throw new Error(`Trigger with id ${id} not found`)
+            throw new Error(`Trigger with id ${id} not found`);
+        }
+
+        // Validate cron expression if type is cron and config is being updated
+        if (triggerData.type === 'cron' || (trigger.type === 'cron' && triggerData.config)) {
+            const currentConfig = (typeof trigger.config === 'string' ? JSON.parse(trigger.config) : trigger.config) as any;
+            const newConfigData = triggerData.config as any;
+            const newCronExpression = newConfigData?.cronExpression || currentConfig?.cronExpression;
+            
+            if (!newCronExpression || typeof newCronExpression !== 'string') {
+                throw new Error('Missing or invalid cronExpression in config for cron trigger');
+            }
+            try {
+                parseExpression(newCronExpression);
+            } catch (e: any) {
+                throw new Error(`Invalid cron expression format: ${newCronExpression} - ${e.message}`);
+            }
         }
 
         // Convert config object to string if needed
         if (triggerData.config && typeof triggerData.config !== 'string') {
-            triggerData.config = JSON.stringify(triggerData.config)
+            triggerData.config = JSON.stringify(triggerData.config);
         }
 
-        Object.assign(trigger, triggerData)
-        return this.triggerRepository.save(trigger)
+        Object.assign(trigger, triggerData);
+        return this.triggerRepository.save(trigger);
     }
 
     async deleteTrigger(id: string): Promise<void> {

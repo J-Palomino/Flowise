@@ -155,6 +155,25 @@ export class TriggerSchedulerService {
                     this.cronJobs.set(trigger.id, job)
                     logger.info(`Scheduled recurring trigger ${trigger.id} (${trigger.name}) with cron: ${cronExpression}`)
                 }
+            } else if (trigger.type === 'cron') {
+                const cronConfig = config as any;
+                if (!cronConfig || !cronConfig.cronExpression || typeof cronConfig.cronExpression !== 'string') {
+                    logger.error(`Cron trigger ${trigger.id} (${trigger.name}) is missing cronExpression in config.`);
+                    return;
+                }
+                const { cronExpression } = cronConfig;
+
+                if (!cron.validate(cronExpression)) {
+                    logger.error(`Invalid cron expression for trigger ${trigger.id} (${trigger.name}): ${cronExpression}`);
+                    return;
+                }
+
+                const job = cron.schedule(cronExpression, () => {
+                    this.executeTrigger(trigger);
+                }, { name: trigger.id });
+
+                this.cronJobs.set(trigger.id, job);
+                logger.info(`Scheduled cron trigger ${trigger.id} (${trigger.name}) with expression: ${cronExpression}`);
             } else if (trigger.type === 'webhook') {
                 // Webhook triggers are executed on demand, not scheduled
                 logger.info(`Registered webhook trigger ${trigger.id} (${trigger.name})`)

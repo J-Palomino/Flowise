@@ -4,7 +4,7 @@ require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 // Start Flowise with Supabase database
 function startFlowiseWithSupabase() {
-  console.log('Starting Flowise with Supabase database...');
+  console.log('Daisy chaining with Supabase database...');
   
   // Check if required environment variables are set
   const requiredEnvVars = [
@@ -32,11 +32,11 @@ function startFlowiseWithSupabase() {
   });
   
   flowiseProcess.on('error', (error) => {
-    console.error('Error starting Flowise:', error);
+    console.error('Error starting Daisy:', error);
   });
   
   flowiseProcess.on('close', (code) => {
-    console.log(`Flowise process exited with code ${code}`);
+    console.log(`Daisy process exited with code ${code}`);
   });
 }
 

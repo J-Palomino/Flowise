@@ -20,7 +20,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY packages/ui/package.json ./packages/ui/
 COPY packages/components/package.json ./packages/components/
-COPY packages/api/package.json ./packages/api/
+COPY packages/api-documentation/package.json ./packages/api-documentation/
 COPY packages/server/package.json ./packages/server/
 
 # Copy source code

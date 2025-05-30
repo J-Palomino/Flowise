@@ -77,7 +77,15 @@ const Calendar = () => {
                         eventProps.backgroundColor = theme.palette.secondary.main;
                         eventProps.borderColor = theme.palette.secondary.dark;
                     }
-                } else if (trigger.type === 'webhook') {
+                } else if (trigger.type === 'cron' && config && config.cronExpression) {
+                        // Cron triggers - show as all-day event
+                        eventProps.allDay = true;
+                        eventProps.start = new Date(trigger.created_at || Date.now());
+                        eventProps.title = `${trigger.name} (Cron)`;
+                        eventProps.backgroundColor = theme.palette.info.main;
+                        eventProps.borderColor = theme.palette.info.dark;
+                        eventProps.extendedProps.cronExpression = config.cronExpression;
+                    } else if (trigger.type === 'webhook') {
                     // Webhook triggers - show as all-day event
                     eventProps.allDay = true
                     eventProps.start = new Date()
@@ -269,6 +277,11 @@ const Calendar = () => {
                                 <Typography variant="body2" color="textSecondary" gutterBottom>
                                     Type: {selectedEvent.extendedProps.triggerType}
                                 </Typography>
+                                {selectedEvent.extendedProps.triggerType === 'cron' && selectedEvent.extendedProps.cronExpression && (
+                                    <Typography variant="body2" color="textSecondary" gutterBottom sx={{ mt: 1 }}>
+                                        Cron Expression: {selectedEvent.extendedProps.cronExpression}
+                                    </Typography>
+                                )}
                                 {selectedEvent.extendedProps.description && (
                                     <Typography variant="body2" paragraph>
                                         {selectedEvent.extendedProps.description}
