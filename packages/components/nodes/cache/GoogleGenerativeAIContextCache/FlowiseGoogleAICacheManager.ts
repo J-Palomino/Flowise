@@ -39,6 +39,40 @@ export class GoogleAICacheManager extends GoogleAICacheManagerBase {
         this.cachedContents.set(hashKey, res)
         return res
     }
+    
+    async update(options: any, updateParams?: any): Promise<CachedContent> {
+        const { model, tools, prompt, response } = options
+        if (!prompt?.length) {
+            throw new Error('Prompt is required for update')
+        }
+        
+        const hashKey = hash({
+            model,
+            tools,
+            contents: prompt
+        })
+        
+        const cachedContent = this.cachedContents.get(hashKey)
+        if (cachedContent && cachedContent.name) {
+            // If we have a cached content with this hash, update it using the parent class method
+            return super.update(cachedContent.name, updateParams || {
+                cachedContent: {
+                    response
+                }
+            })
+        }
+        
+        // If no cached content exists, create a new one
+        const res = await this.create({
+            model,
+            tools,
+            contents: prompt,
+            displayName: hashKey,
+            ttlSeconds: this.ttlSeconds
+        })
+        this.cachedContents.set(hashKey, res)
+        return res
+    }
 }
 
 export default GoogleAICacheManager

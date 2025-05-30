@@ -5,7 +5,7 @@ import { ICommonObject, IMultiModalOption, INode, INodeData, INodeOptionsValue, 
 import { convertMultiOptionsToStringArray, getBaseClasses, getCredentialData, getCredentialParam } from '../../../src/utils'
 import { getModels, MODEL_TYPE } from '../../../src/modelLoader'
 import { ChatGoogleGenerativeAI, GoogleGenerativeAIChatInput } from './FlowiseChatGoogleGenerativeAI'
-import type GoogleAICacheManager from '../../cache/GoogleGenerativeAIContextCache/FlowiseGoogleAICacheManager'
+import type GoogleAICacheManager from '../../../nodes/cache/GoogleGenerativeAIContextCache/FlowiseGoogleAICacheManager'
 
 class GoogleGenerativeAI_ChatModels implements INode {
     label: string
