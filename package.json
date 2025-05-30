@@ -27,7 +27,10 @@
         "lint-fix": "pnpm lint --fix",
         "quick": "pretty-quick --staged",
         "postinstall": "husky install",
-        "migration:create": "pnpm typeorm migration:create"
+        "migration:create": "pnpm typeorm migration:create",
+        "setup-supabase": "node scripts/setup-supabase.js",
+        "init-supabase-schema": "node scripts/init-supabase-schema.js",
+        "start-with-supabase": "node scripts/start-with-supabase.js"
     },
     "lint-staged": {
         "*.{js,jsx,ts,tsx,json,md}": "eslint --fix"
@@ -120,5 +123,9 @@
             ]
         ]
     },
-    "packageManager": "pnpm@9.2.0+sha1.886364ebd6dae009284bebc56ed4296bb6dd557a"
+    "packageManager": "pnpm@9.2.0+sha1.886364ebd6dae009284bebc56ed4296bb6dd557a",
+    "dependencies": {
+        "@supabase/supabase-js": "^2.29.0",
+        "dotenv": "^16.0.0"
+    }
 }

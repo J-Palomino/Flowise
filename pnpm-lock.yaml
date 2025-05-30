@@ -29,6 +29,13 @@ overrides:
 importers:
 
   .:
+    dependencies:
+      '@supabase/supabase-js':
+        specifier: ^2.29.0
+        version: 2.49.8(bufferutil@4.0.9)(utf-8-validate@6.0.5)
+      dotenv:
+        specifier: ^16.0.0
+        version: 16.5.0
     devDependencies:
       '@babel/preset-env':
         specifier: ^7.19.4
@@ -56,7 +63,7 @@ importers:
         version: 8.10.0(eslint@8.57.1)
       eslint-config-react-app:
         specifier: ^7.0.1
-        version: 7.0.1(@babel/plugin-syntax-flow@7.27.1(@babel/core@7.27.3))(@babel/plugin-transform-react-jsx@7.27.1(@babel/core@7.27.3))(eslint@8.57.1)(jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3)))(typescript@5.8.3)
+        version: 7.0.1(@babel/plugin-syntax-flow@7.27.1(@babel/core@7.27.3))(@babel/plugin-transform-react-jsx@7.27.1(@babel/core@7.27.3))(eslint@8.57.1)(jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5))(typescript@5.8.3)
       eslint-plugin-jsx-a11y:
         specifier: ^6.6.1
         version: 6.10.2(eslint@8.57.1)
@@ -102,6 +109,8 @@ importers:
       typescript:
         specifier: ^5.4.5
         version: 5.8.3
+
+  packages/api: {}
 
   packages/api-documentation:
     dependencies:
@@ -676,7 +685,7 @@ importers:
         version: 3.0.3
       openai:
         specifier: 4.96.0
-        version: 4.96.0(encoding@0.1.13)(ws@8.18.2)(zod@3.25.39)
+        version: 4.96.0(encoding@0.1.13)(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@6.0.5))(zod@3.25.39)
       pg:
         specifier: ^8.11.1
         version: 8.16.0
@@ -953,7 +962,7 @@ importers:
         version: 4.2.1
       rehype-mathjax:
         specifier: ^4.0.2
-        version: 4.0.3(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))
+        version: 4.0.3(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.5)
       rehype-raw:
         specifier: ^7.0.0
         version: 7.0.0
@@ -996,7 +1005,7 @@ importers:
         version: 3.3.1(prettier@3.5.3)
       react-scripts:
         specifier: ^5.0.1
-        version: 5.0.1(@babel/plugin-syntax-flow@7.27.1(@babel/core@7.27.3))(@babel/plugin-transform-react-jsx@7.27.1(@babel/core@7.27.3))(@types/babel__core@7.20.5)(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(eslint@8.57.1)(react@18.3.1)(sass@1.89.0)(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(type-fest@4.41.0)(typescript@5.8.3)
+        version: 5.0.1(@babel/plugin-syntax-flow@7.27.1(@babel/core@7.27.3))(@babel/plugin-transform-react-jsx@7.27.1(@babel/core@7.27.3))(@types/babel__core@7.20.5)(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(eslint@8.57.1)(react@18.3.1)(sass@1.89.0)(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(type-fest@4.41.0)(typescript@5.8.3)(utf-8-validate@6.0.5)
       rimraf:
         specifier: ^5.0.5
         version: 5.0.10
@@ -20095,7 +20104,7 @@ snapshots:
       jest-util: 28.1.3
       slash: 3.0.0
 
-  '@jest/core@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))':
+  '@jest/core@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5)':
     dependencies:
       '@jest/console': 27.5.1
       '@jest/reporters': 27.5.1
@@ -20109,13 +20118,13 @@ snapshots:
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-changed-files: 27.5.1
-      jest-config: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))
+      jest-config: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5)
       jest-haste-map: 27.5.1
       jest-message-util: 27.5.1
       jest-regex-util: 27.5.1
       jest-resolve: 27.5.1
       jest-resolve-dependencies: 27.5.1
-      jest-runner: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))
+      jest-runner: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.5)
       jest-runtime: 27.5.1
       jest-snapshot: 27.5.1
       jest-util: 27.5.1
@@ -22501,7 +22510,7 @@ snapshots:
     dependencies:
       playwright: 1.52.0
 
-  '@pmmmwh/react-refresh-webpack-plugin@0.5.16(react-refresh@0.11.0)(type-fest@4.41.0)(webpack-dev-server@4.15.2(bufferutil@4.0.9)(webpack@5.99.9))(webpack@5.99.9)':
+  '@pmmmwh/react-refresh-webpack-plugin@0.5.16(react-refresh@0.11.0)(type-fest@4.41.0)(webpack-dev-server@4.15.2(bufferutil@4.0.9)(utf-8-validate@6.0.5)(webpack@5.99.9))(webpack@5.99.9)':
     dependencies:
       ansi-html: 0.0.9
       core-js-pure: 3.42.0
@@ -22514,7 +22523,7 @@ snapshots:
       webpack: 5.99.9
     optionalDependencies:
       type-fest: 4.41.0
-      webpack-dev-server: 4.15.2(bufferutil@4.0.9)(webpack@5.99.9)
+      webpack-dev-server: 4.15.2(bufferutil@4.0.9)(utf-8-validate@6.0.5)(webpack@5.99.9)
 
   '@popperjs/core@2.11.8': {}
 
@@ -27567,7 +27576,7 @@ snapshots:
     dependencies:
       eslint: 8.57.1
 
-  eslint-config-react-app@7.0.1(@babel/plugin-syntax-flow@7.27.1(@babel/core@7.27.3))(@babel/plugin-transform-react-jsx@7.27.1(@babel/core@7.27.3))(eslint@8.57.1)(jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3)))(typescript@5.8.3):
+  eslint-config-react-app@7.0.1(@babel/plugin-syntax-flow@7.27.1(@babel/core@7.27.3))(@babel/plugin-transform-react-jsx@7.27.1(@babel/core@7.27.3))(eslint@8.57.1)(jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5))(typescript@5.8.3):
     dependencies:
       '@babel/core': 7.27.3
       '@babel/eslint-parser': 7.27.1(@babel/core@7.27.3)(eslint@8.57.1)
@@ -27579,7 +27588,7 @@ snapshots:
       eslint: 8.57.1
       eslint-plugin-flowtype: 8.0.3(@babel/plugin-syntax-flow@7.27.1(@babel/core@7.27.3))(@babel/plugin-transform-react-jsx@7.27.1(@babel/core@7.27.3))(eslint@8.57.1)
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
-      eslint-plugin-jest: 25.7.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3)))(typescript@5.8.3)
+      eslint-plugin-jest: 25.7.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5))(typescript@5.8.3)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-react: 7.37.5(eslint@8.57.1)
       eslint-plugin-react-hooks: 4.6.2(eslint@8.57.1)
@@ -27649,13 +27658,13 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-jest@25.7.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3)))(typescript@5.8.3):
+  eslint-plugin-jest@25.7.0(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5))(typescript@5.8.3):
     dependencies:
       '@typescript-eslint/experimental-utils': 5.62.0(eslint@8.57.1)(typescript@5.8.3)
       eslint: 8.57.1
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3)
-      jest: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))
+      jest: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -29981,16 +29990,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  jest-cli@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3)):
+  jest-cli@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5):
     dependencies:
-      '@jest/core': 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))
+      '@jest/core': 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5)
       '@jest/test-result': 27.5.1
       '@jest/types': 27.5.1
       chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.11
       import-local: 3.2.0
-      jest-config: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))
+      jest-config: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5)
       jest-util: 27.5.1
       jest-validate: 27.5.1
       prompts: 2.4.2
@@ -30002,7 +30011,7 @@ snapshots:
       - ts-node
       - utf-8-validate
 
-  jest-config@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3)):
+  jest-config@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5):
     dependencies:
       '@babel/core': 7.27.3
       '@jest/test-sequencer': 27.5.1
@@ -30014,13 +30023,13 @@ snapshots:
       glob: 7.2.3
       graceful-fs: 4.2.11
       jest-circus: 27.5.1
-      jest-environment-jsdom: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))
+      jest-environment-jsdom: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.5)
       jest-environment-node: 27.5.1
       jest-get-type: 27.5.1
       jest-jasmine2: 27.5.1
       jest-regex-util: 27.5.1
       jest-resolve: 27.5.1
-      jest-runner: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))
+      jest-runner: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.5)
       jest-util: 27.5.1
       jest-validate: 27.5.1
       micromatch: 4.0.8
@@ -30029,7 +30038,7 @@ snapshots:
       slash: 3.0.0
       strip-json-comments: 3.1.1
     optionalDependencies:
-      ts-node: 10.9.2(@swc/core@1.11.29(@swc/helpers@0.5.17))(@types/node@22.15.26)(typescript@5.8.3)
+      ts-node: 10.9.2(@swc/core@1.11.29)(@types/node@22.15.26)(typescript@5.8.3)
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -30062,7 +30071,7 @@ snapshots:
       jest-util: 27.5.1
       pretty-format: 27.5.1
 
-  jest-environment-jsdom@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13)):
+  jest-environment-jsdom@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.5):
     dependencies:
       '@jest/environment': 27.5.1
       '@jest/fake-timers': 27.5.1
@@ -30070,7 +30079,7 @@ snapshots:
       '@types/node': 22.15.26
       jest-mock: 27.5.1
       jest-util: 27.5.1
-      jsdom: 16.7.0(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))
+      jsdom: 16.7.0(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.5)
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -30218,7 +30227,7 @@ snapshots:
       resolve.exports: 1.1.1
       slash: 3.0.0
 
-  jest-runner@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13)):
+  jest-runner@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.5):
     dependencies:
       '@jest/console': 27.5.1
       '@jest/environment': 27.5.1
@@ -30230,7 +30239,7 @@ snapshots:
       emittery: 0.8.1
       graceful-fs: 4.2.11
       jest-docblock: 27.5.1
-      jest-environment-jsdom: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))
+      jest-environment-jsdom: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.5)
       jest-environment-node: 27.5.1
       jest-haste-map: 27.5.1
       jest-leak-detector: 27.5.1
@@ -30342,11 +30351,11 @@ snapshots:
       leven: 3.1.0
       pretty-format: 27.5.1
 
-  jest-watch-typeahead@1.1.0(jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))):
+  jest-watch-typeahead@1.1.0(jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5)):
     dependencies:
       ansi-escapes: 4.3.2
       chalk: 4.1.2
-      jest: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))
+      jest: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5)
       jest-regex-util: 28.0.2
       jest-watcher: 28.1.3
       slash: 4.0.0
@@ -30392,11 +30401,11 @@ snapshots:
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
-  jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3)):
+  jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5):
     dependencies:
-      '@jest/core': 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))
+      '@jest/core': 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5)
       import-local: 3.2.0
-      jest-cli: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))
+      jest-cli: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5)
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -30441,7 +30450,7 @@ snapshots:
 
   jsbn@1.1.0: {}
 
-  jsdom@16.7.0(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13)):
+  jsdom@16.7.0(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.5):
     dependencies:
       abab: 2.0.6
       acorn: 8.14.1
@@ -30468,7 +30477,7 @@ snapshots:
       whatwg-encoding: 1.0.5
       whatwg-mimetype: 2.3.0
       whatwg-url: 8.7.0
-      ws: 7.5.10(bufferutil@4.0.9)
+      ws: 7.5.10(bufferutil@4.0.9)(utf-8-validate@6.0.5)
       xml-name-validator: 3.0.0
     optionalDependencies:
       canvas: 2.11.2(encoding@0.1.13)
@@ -30477,7 +30486,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  jsdom@20.0.3(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13)):
+  jsdom@20.0.3(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.5):
     dependencies:
       abab: 2.0.6
       acorn: 8.14.1
@@ -31505,7 +31514,7 @@ snapshots:
       groq-sdk: 0.5.0(encoding@0.1.13)
       neo4j-driver: 5.28.1
       ollama: 0.5.15
-      openai: 4.96.0(encoding@0.1.13)(ws@8.18.2)(zod@3.25.39)
+      openai: 4.96.0(encoding@0.1.13)(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@6.0.5))(zod@3.25.39)
       pg: 8.16.0
       redis: 4.7.1
       sqlite3: 5.1.7
@@ -32637,7 +32646,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  openai@4.96.0(encoding@0.1.13)(ws@8.18.2)(zod@3.25.39):
+  openai@4.96.0(encoding@0.1.13)(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@6.0.5))(zod@3.25.39):
     dependencies:
       '@types/node': 18.19.107
       '@types/node-fetch': 2.6.12
@@ -33263,7 +33272,7 @@ snapshots:
       yaml: 2.8.0
     optionalDependencies:
       postcss: 8.5.4
-      ts-node: 10.9.2(@swc/core@1.11.29(@swc/helpers@0.5.17))(@types/node@22.15.26)(typescript@5.8.3)
+      ts-node: 10.9.2(@swc/core@1.11.29)(@types/node@22.15.26)(typescript@5.8.3)
 
   postcss-loader@6.2.1(postcss@8.5.4)(webpack@5.99.9):
     dependencies:
@@ -34234,10 +34243,10 @@ snapshots:
       history: 5.3.0
       react: 18.3.1
 
-  react-scripts@5.0.1(@babel/plugin-syntax-flow@7.27.1(@babel/core@7.27.3))(@babel/plugin-transform-react-jsx@7.27.1(@babel/core@7.27.3))(@types/babel__core@7.20.5)(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(eslint@8.57.1)(react@18.3.1)(sass@1.89.0)(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(type-fest@4.41.0)(typescript@5.8.3):
+  react-scripts@5.0.1(@babel/plugin-syntax-flow@7.27.1(@babel/core@7.27.3))(@babel/plugin-transform-react-jsx@7.27.1(@babel/core@7.27.3))(@types/babel__core@7.20.5)(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(eslint@8.57.1)(react@18.3.1)(sass@1.89.0)(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(type-fest@4.41.0)(typescript@5.8.3)(utf-8-validate@6.0.5):
     dependencies:
       '@babel/core': 7.27.3
-      '@pmmmwh/react-refresh-webpack-plugin': 0.5.16(react-refresh@0.11.0)(type-fest@4.41.0)(webpack-dev-server@4.15.2(bufferutil@4.0.9)(webpack@5.99.9))(webpack@5.99.9)
+      '@pmmmwh/react-refresh-webpack-plugin': 0.5.16(react-refresh@0.11.0)(type-fest@4.41.0)(webpack-dev-server@4.15.2(bufferutil@4.0.9)(utf-8-validate@6.0.5)(webpack@5.99.9))(webpack@5.99.9)
       '@svgr/webpack': 5.5.0
       babel-jest: 27.5.1(@babel/core@7.27.3)
       babel-loader: 8.4.1(@babel/core@7.27.3)(webpack@5.99.9)
@@ -34252,15 +34261,15 @@ snapshots:
       dotenv: 10.0.0
       dotenv-expand: 5.1.0
       eslint: 8.57.1
-      eslint-config-react-app: 7.0.1(@babel/plugin-syntax-flow@7.27.1(@babel/core@7.27.3))(@babel/plugin-transform-react-jsx@7.27.1(@babel/core@7.27.3))(eslint@8.57.1)(jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3)))(typescript@5.8.3)
+      eslint-config-react-app: 7.0.1(@babel/plugin-syntax-flow@7.27.1(@babel/core@7.27.3))(@babel/plugin-transform-react-jsx@7.27.1(@babel/core@7.27.3))(eslint@8.57.1)(jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5))(typescript@5.8.3)
       eslint-webpack-plugin: 3.2.0(eslint@8.57.1)(webpack@5.99.9)
       file-loader: 6.2.0(webpack@5.99.9)
       fs-extra: 10.1.0
       html-webpack-plugin: 5.6.3(webpack@5.99.9)
       identity-obj-proxy: 3.0.0
-      jest: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))
+      jest: 27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5)
       jest-resolve: 27.5.1
-      jest-watch-typeahead: 1.1.0(jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3)))
+      jest-watch-typeahead: 1.1.0(jest@27.5.1(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))(utf-8-validate@6.0.5))
       mini-css-extract-plugin: 2.9.2(webpack@5.99.9)
       postcss: 8.5.4
       postcss-flexbugs-fixes: 5.0.2(postcss@8.5.4)
@@ -34281,7 +34290,7 @@ snapshots:
       tailwindcss: 3.4.17(ts-node@10.9.2(@types/node@22.15.26)(typescript@5.8.3))
       terser-webpack-plugin: 5.3.14(webpack@5.99.9)
       webpack: 5.99.9
-      webpack-dev-server: 4.15.2(bufferutil@4.0.9)(webpack@5.99.9)
+      webpack-dev-server: 4.15.2(bufferutil@4.0.9)(utf-8-validate@6.0.5)(webpack@5.99.9)
       webpack-manifest-plugin: 4.1.1(webpack@5.99.9)
       workbox-webpack-plugin: 6.6.0(@types/babel__core@7.20.5)(webpack@5.99.9)
     optionalDependencies:
@@ -34573,13 +34582,13 @@ snapshots:
     dependencies:
       jsesc: 3.0.2
 
-  rehype-mathjax@4.0.3(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13)):
+  rehype-mathjax@4.0.3(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.5):
     dependencies:
       '@types/hast': 2.3.10
       '@types/mathjax': 0.0.37
       hast-util-from-dom: 4.2.0
       hast-util-to-text: 3.1.2
-      jsdom: 20.0.3(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))
+      jsdom: 20.0.3(bufferutil@4.0.9)(canvas@2.11.2(encoding@0.1.13))(utf-8-validate@6.0.5)
       mathjax-full: 3.2.2
       unified: 10.1.2
       unist-util-visit: 4.1.2
@@ -37030,7 +37039,7 @@ snapshots:
     optionalDependencies:
       webpack: 5.99.9
 
-  webpack-dev-server@4.15.2(bufferutil@4.0.9)(webpack@5.99.9):
+  webpack-dev-server@4.15.2(bufferutil@4.0.9)(utf-8-validate@6.0.5)(webpack@5.99.9):
     dependencies:
       '@types/bonjour': 3.5.13
       '@types/connect-history-api-fallback': 1.5.4
@@ -37451,9 +37460,10 @@ snapshots:
       imurmurhash: 0.1.4
       signal-exit: 3.0.7
 
-  ws@7.5.10(bufferutil@4.0.9):
+  ws@7.5.10(bufferutil@4.0.9)(utf-8-validate@6.0.5):
     optionalDependencies:
       bufferutil: 4.0.9
+      utf-8-validate: 6.0.5
 
   ws@8.13.0(bufferutil@4.0.9)(utf-8-validate@6.0.5):
     optionalDependencies:
