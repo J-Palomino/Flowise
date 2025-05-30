@@ -88,11 +88,15 @@ export class TriggerSchedulerService {
                     }, delay)
 
                     // Store the timeout ID as a cron job for consistency
-                    this.cronJobs.set(trigger.id, {
+                    // Create a custom object that matches what we need from ScheduledTask
+                    const customTask = {
                         stop: () => clearTimeout(timeoutId),
                         start: () => {}, // No-op for timeouts
                         getStatus: () => 'scheduled'
-                    } as cron.ScheduledTask)
+                    }
+                    
+                    // Cast to unknown first, then to ScheduledTask to avoid TypeScript error
+                    this.cronJobs.set(trigger.id, customTask as unknown as cron.ScheduledTask)
 
                     logger.info(`Scheduled one-time trigger ${trigger.id} (${trigger.name}) for ${triggerDate.toISOString()}`)
                 } else if (config.schedule === 'recurring') {
