@@ -19,7 +19,7 @@ import {
 // project imports
 import MainCard from 'ui-component/cards/MainCard'
 import axios from 'axios'
-import { baseURL } from 'store/constant'
+import { baseURL } from '../../store/constant'
 
 // assets
 import Visibility from '@mui/icons-material/Visibility'

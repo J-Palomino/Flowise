@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Typography, Box, Chip, Tooltip } from '@mui/material'
 import axios from 'axios'
-import { baseURL } from 'store/constant'
+import { baseURL } from '../store/constant'
 
 const UserCredits = () => {
     const [credits, setCredits] = useState(null)
