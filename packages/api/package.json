@@ -1,5 +1,5 @@
 {
-  "name": "flowise-api",
+  "name": "flowise-api-placeholder",
   "version": "1.0.0",
   "description": "Placeholder package for Docker build",
   "main": "index.js",
