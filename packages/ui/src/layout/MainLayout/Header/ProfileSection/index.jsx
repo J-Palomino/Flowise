@@ -167,7 +167,7 @@ ExportDialog.propTypes = {
 
 // ==============================|| PROFILE MENU ||============================== //
 
-const ProfileSection = ({ username, handleLogout }) => {
+const ProfileSection = ({ username, handleLogout, isAuthenticated = false }) => {
     const theme = useTheme()
 
     const customization = useSelector((state) => state.customization)
@@ -441,7 +441,7 @@ const ProfileSection = ({ username, handleLogout }) => {
                                                     </ListItemIcon>
                                                     <ListItemText primary={<Typography variant='body2'>About Flowise</Typography>} />
                                                 </ListItemButton>
-                                                {localStorage.getItem('username') && localStorage.getItem('password') && (
+                                                {(isAuthenticated || (localStorage.getItem('username') && localStorage.getItem('password'))) && (
                                                     <ListItemButton
                                                         sx={{ borderRadius: `${customization.borderRadius}px` }}
                                                         onClick={handleLogout}
@@ -450,6 +450,17 @@ const ProfileSection = ({ username, handleLogout }) => {
                                                             <IconLogout stroke={1.5} size='1.3rem' />
                                                         </ListItemIcon>
                                                         <ListItemText primary={<Typography variant='body2'>Logout</Typography>} />
+                                                    </ListItemButton>
+                                                )}
+                                                {!isAuthenticated && !(localStorage.getItem('username') && localStorage.getItem('password')) && (
+                                                    <ListItemButton
+                                                        sx={{ borderRadius: `${customization.borderRadius}px` }}
+                                                        onClick={() => navigate('/login')}
+                                                    >
+                                                        <ListItemIcon>
+                                                            <IconLogout stroke={1.5} size='1.3rem' />
+                                                        </ListItemIcon>
+                                                        <ListItemText primary={<Typography variant='body2'>Login</Typography>} />
                                                     </ListItemButton>
                                                 )}
                                             </List>

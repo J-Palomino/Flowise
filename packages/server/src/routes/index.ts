@@ -1,4 +1,6 @@
 import express from 'express'
+import { verifyToken, checkCredits } from '../middleware/authMiddleware'
+import { IAuthService } from '../Interface'
 import apikeyRouter from './apikey'
 import assistantsRouter from './assistants'
 import attachmentsRouter from './attachments'
@@ -50,6 +52,34 @@ import validationRouter from './validation'
 import agentflowv2GeneratorRouter from './agentflowv2-generator'
 
 const router = express.Router()
+
+// Function to create protected router with authentication
+const createProtectedRouter = (authService: IAuthService) => {
+    const protectedRouter = express.Router()
+    protectedRouter.use(verifyToken(authService))
+    return protectedRouter
+}
+
+// Export the function to be used in index.ts
+export const initializeProtectedRoutes = (authService: IAuthService) => {
+    // Protected routes that require authentication
+    const protectedRouter = createProtectedRouter(authService)
+    
+    // Add protected routes here
+    router.use('/chatflows', protectedRouter)
+    router.use('/chatflows-streaming', protectedRouter)
+    router.use('/credentials', protectedRouter)
+    router.use('/variables', protectedRouter)
+    router.use('/tools', protectedRouter)
+    router.use('/document-store', protectedRouter)
+    router.use('/assistants', protectedRouter)
+    router.use('/openai-assistants', protectedRouter)
+    
+    // Add credit check middleware to specific routes
+    const chatflowsWithCredits = express.Router()
+    chatflowsWithCredits.use(checkCredits(authService, 1))
+    protectedRouter.use('/chatflows/:id/prediction', chatflowsWithCredits)
+}
 
 router.use('/ping', pingRouter)
 router.use('/apikey', apikeyRouter)

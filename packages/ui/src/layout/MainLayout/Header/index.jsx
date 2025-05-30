@@ -11,6 +11,7 @@ import { styled } from '@mui/material/styles'
 // project imports
 import LogoSection from '../LogoSection'
 import ProfileSection from './ProfileSection'
+import UserCredits from '@/ui-component/UserCredits'
 
 // assets
 import { IconMenu2 } from '@tabler/icons-react'
@@ -72,6 +73,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
     const navigate = useNavigate()
 
     const customization = useSelector((state) => state.customization)
+    const auth = useSelector((state) => state.auth)
 
     const [isDark, setIsDark] = useState(customization.isDarkMode)
     const dispatch = useDispatch()
@@ -126,9 +128,15 @@ const Header = ({ handleLeftDrawerToggle }) => {
                 </ButtonBase>
             </Box>
             <Box sx={{ flexGrow: 1 }} />
+            {auth.isAuthenticated && <UserCredits credits={auth.credits} />}
+            <Box sx={{ ml: 2 }} />
             <MaterialUISwitch checked={isDark} onChange={changeDarkMode} />
-            <Box sx={{ ml: 2 }}></Box>
-            <ProfileSection handleLogout={signOutClicked} username={localStorage.getItem('username') ?? ''} />
+            <Box sx={{ ml: 2 }} />
+            <ProfileSection 
+                handleLogout={signOutClicked} 
+                username={auth.isAuthenticated ? auth.user?.email : (localStorage.getItem('username') ?? '')} 
+                isAuthenticated={auth.isAuthenticated}
+            />
         </>
     )
 }

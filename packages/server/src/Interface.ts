@@ -400,3 +400,16 @@ export interface IVariableOverride {
 
 // DocumentStore related
 export * from './Interface.DocumentStore'
+
+/**
+ * Authentication Service Interface
+ */
+export interface IAuthService {
+    signUp(email: string, password: string, firstName?: string, lastName?: string): Promise<any>
+    signIn(email: string, password: string): Promise<any>
+    signOut(token: string): Promise<void>
+    getUserById(userId: string): Promise<any>
+    getUserCredits(userId: string): Promise<number>
+    updateUserCredits(userId: string, credits: number): Promise<any>
+    verifyToken(token: string): Promise<any>
+}

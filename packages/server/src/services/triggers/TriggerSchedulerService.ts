@@ -82,6 +82,7 @@ export class TriggerSchedulerService {
             this.isInitialized = true
             await this.loadActiveTriggers()
             logger.info('Trigger scheduler service initialized')
+            return Promise.resolve()
         } catch (error) {
             logger.error('Error initializing trigger scheduler service:', error)
             // Try again after a delay
@@ -94,14 +95,14 @@ export class TriggerSchedulerService {
     async loadActiveTriggers(): Promise<void> {
         if (!this.isInitialized) {
             await this.initialize()
-            return // initialize() will call loadActiveTriggers() again
+            return Promise.resolve() // initialize() will call loadActiveTriggers() again
         }
         
         try {
             // Verify that the repository is available
             if (!this.triggerRepository) {
                 logger.error('Trigger repository is not available')
-                return
+                return Promise.resolve()
             }
             
             // Check if the table exists by trying to count records
@@ -130,6 +131,7 @@ export class TriggerSchedulerService {
             }
             
             logger.info(`Loaded ${activeTriggers.length} active triggers`)
+            return Promise.resolve()
         } catch (error) {
             logger.error('Error loading active triggers:', error)
             // Wait and try again

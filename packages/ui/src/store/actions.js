@@ -25,6 +25,11 @@ export const REMOVE_SNACKBAR = 'REMOVE_SNACKBAR'
 export const SHOW_CONFIRM = 'SHOW_CONFIRM'
 export const HIDE_CONFIRM = 'HIDE_CONFIRM'
 
+// action - auth reducer
+export const LOGIN = '@auth/LOGIN'
+export const LOGOUT = '@auth/LOGOUT'
+export const UPDATE_CREDITS = '@auth/UPDATE_CREDITS'
+
 export const enqueueSnackbar = (notification) => {
     const key = notification.options && notification.options.key
 

@@ -17,7 +17,7 @@ import { RateLimiterManager } from './utils/rateLimit'
 import { getAPIKeys } from './utils/apiKey'
 import { sanitizeMiddleware, getCorsOptions, getAllowedIframeOrigins } from './utils/XSS'
 import { Telemetry } from './utils/telemetry'
-import flowiseApiV1Router from './routes'
+import flowiseApiV1Router, { initializeProtectedRoutes } from './routes'
 import errorHandlerMiddleware from './middlewares/errors'
 import { SSEStreamer } from './utils/SSEStreamer'
 import { validateAPIKey } from './utils/validateKey'
@@ -28,6 +28,8 @@ import { QueueManager } from './queue/QueueManager'
 import { RedisEventSubscriber } from './queue/RedisEventSubscriber'
 import { WHITELIST_URLS } from './utils/constants'
 import { triggerSchedulerService } from './services/triggers/TriggerSchedulerService'
+import { AuthService } from './services/AuthService'
+import { authRoutes } from './routes/auth'
 import 'global-agent/bootstrap'
 
 declare global {
@@ -61,6 +63,7 @@ export class App {
     metricsProvider: IMetricsProvider
     queueManager: QueueManager
     redisSubscriber: RedisEventSubscriber
+    authService: AuthService
 
     constructor() {
         this.app = express()
@@ -100,6 +103,9 @@ export class App {
 
             // Initialize SSE Streamer
             this.sseStreamer = new SSEStreamer()
+            
+            // Initialize authentication service
+            this.authService = new AuthService(this.AppDataSource)
             
             // Initialize trigger scheduler
             await triggerSchedulerService.initialize()
@@ -244,6 +250,12 @@ export class App {
         }
 
         this.app.use('/api/v1', flowiseApiV1Router)
+        this.app.use('/api/v1/auth', authRoutes(this.authService))
+        
+        // Initialize protected routes with authentication
+        if (this.authService) {
+            initializeProtectedRoutes(this.authService)
+        }
 
         // ----------------------------------------
         // Configure number of proxies in Host Environment
