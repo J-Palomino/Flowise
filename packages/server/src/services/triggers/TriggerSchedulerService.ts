@@ -63,7 +63,7 @@ export class TriggerSchedulerService {
         // Don't initialize in constructor - will be called explicitly from server
     }
 
-    async initialize() {
+    async initialize(): Promise<void> {
         try {
             // Wait for DataSource to be initialized
             const dataSource = getDataSource()
@@ -91,7 +91,7 @@ export class TriggerSchedulerService {
         }
     }
 
-    async loadActiveTriggers() {
+    async loadActiveTriggers(): Promise<void> {
         if (!this.isInitialized) {
             await this.initialize()
             return // initialize() will call loadActiveTriggers() again
