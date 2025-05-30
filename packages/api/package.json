@@ -1,0 +1,11 @@
+{
+  "name": "flowise-api",
+  "version": "1.0.0",
+  "description": "Placeholder package for Docker build",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'No build needed'"
+  },
+  "author": "",
+  "license": "ISC"
+}
