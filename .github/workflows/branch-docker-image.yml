@@ -18,9 +18,6 @@ jobs:
         shell: bash
         run: echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
       
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3.0.0
-      
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.0.0
       
@@ -33,79 +30,35 @@ jobs:
         continue-on-error: true
         id: docker_login
       
-      # First build for amd64 only to ensure it works
-      - name: Build and push (amd64 only)
-        id: build_amd64
+      # Build for amd64 only
+      - name: Build and push
+        id: build
         uses: docker/build-push-action@v5.3.0
         with:
           context: .
           file: ./docker/Dockerfile.source
           build-args: |
             NODE_VERSION=20
-          platforms: linux/amd64
           # Only push if Docker Hub login was successful
           push: ${{ steps.docker_login.outcome == 'success' }}
           tags: |
-            flowiseai/flowise:${{ env.BRANCH_NAME }}-amd64
-            flowiseai/flowise:${{ env.BRANCH_NAME }}-${{ github.sha }}-amd64
+            flowiseai/flowise:${{ env.BRANCH_NAME }}
+            flowiseai/flowise:${{ env.BRANCH_NAME }}-${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          # Enable detailed output for debugging
-          outputs: type=docker,dest=/tmp/flowise-amd64.tar
       
-      # If amd64 build succeeds, try building for arm64 as well
-      - name: Build and push (arm64)
-        id: build_arm64
-        if: steps.build_amd64.outcome == 'success' && steps.docker_login.outcome == 'success'
-        uses: docker/build-push-action@v5.3.0
-        with:
-          context: .
-          file: ./docker/Dockerfile.source
-          build-args: |
-            NODE_VERSION=20
-          platforms: linux/arm64
-          push: true
-          tags: |
-            flowiseai/flowise:${{ env.BRANCH_NAME }}-arm64
-            flowiseai/flowise:${{ env.BRANCH_NAME }}-${{ github.sha }}-arm64
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-        continue-on-error: true
-      
-      # Create and push a multi-platform manifest if both builds succeed
-      - name: Create and push multi-platform manifest
-        if: steps.build_amd64.outcome == 'success' && steps.build_arm64.outcome == 'success' && steps.docker_login.outcome == 'success'
-        run: |
-          docker manifest create flowiseai/flowise:${{ env.BRANCH_NAME }} \
-            flowiseai/flowise:${{ env.BRANCH_NAME }}-amd64 \
-            flowiseai/flowise:${{ env.BRANCH_NAME }}-arm64
-          
-          docker manifest create flowiseai/flowise:${{ env.BRANCH_NAME }}-${{ github.sha }} \
-            flowiseai/flowise:${{ env.BRANCH_NAME }}-${{ github.sha }}-amd64 \
-            flowiseai/flowise:${{ env.BRANCH_NAME }}-${{ github.sha }}-arm64
-          
-          docker manifest push flowiseai/flowise:${{ env.BRANCH_NAME }}
-          docker manifest push flowiseai/flowise:${{ env.BRANCH_NAME }}-${{ github.sha }}
-      
-      # Always build the image locally to verify it works
+      # Always build the image locally to verify it works if the main build fails
       - name: Build image locally
-        if: steps.build_amd64.outcome != 'success'
+        if: failure() && steps.build.outcome != 'success'
         run: |
-          echo "Docker build failed or Docker Hub login failed."
-          echo "Building image locally with verbose output to debug..."
+          echo "Docker build failed. Building image locally with verbose output to debug..."
           docker build --progress=plain -t flowiseai/flowise:local -f ./docker/Dockerfile.source .
       
       # Save the build logs for debugging
       - name: Save build logs
         if: always()
         run: |
-          mkdir -p /tmp/build-logs
-          if [ -f /tmp/flowise-amd64.tar ]; then
-            echo "AMD64 build completed and image saved"
-            ls -la /tmp/flowise-amd64.tar
-          else
-            echo "AMD64 build failed or image not saved"
-          fi
+          echo "Docker build status: ${{ steps.build.outcome }}"
           
           # Save Docker build logs if available
           docker images
