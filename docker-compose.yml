@@ -10,19 +10,35 @@ services:
       - PORT=3000
       - DATABASE_TYPE=postgres
       - DATABASE_URL=${DATABASE_URL}
+      # Add individual database parameters
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_SSL=${DATABASE_SSL}
+      # Authentication
       - FLOWISE_USERNAME=${FLOWISE_USERNAME}
       - FLOWISE_PASSWORD=${FLOWISE_PASSWORD}
       - DAISY_USERNAME=${DAISY_USERNAME}
       - DAISY_PASSWORD=${DAISY_PASSWORD}
       - FLOWISE_API_KEY=${FLOWISE_API_KEY}
       - JWT_SECRET=${JWT_SECRET}
+      # CORS settings
       - CORS_ORIGIN=*
       - IFRAME_ORIGINS=*
+      # Supabase
       - SUPABASE_URL=${SUPABASE_URL}
       - SUPABASE_KEY=${SUPABASE_KEY}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      # Google ADK
       - GOOGLE_ADK_API_KEY=${GOOGLE_ADK_API_KEY}
       - GOOGLE_ADK_PROJECT_ID=${GOOGLE_ADK_PROJECT_ID}
       - COMPOSIO_API_KEY=${COMPOSIO_API_KEY}
+      # Feature flags
+      - ENABLE_GOOGLE_GENERATIVE_AI_CHAT=${ENABLE_GOOGLE_GENERATIVE_AI_CHAT}
+      # Force IPv4 connection
+      - NODE_OPTIONS=--dns-result-order=ipv4first
     volumes:
       - flowise-data:/usr/src/app/.flowise
 

@@ -94,7 +94,7 @@ export abstract class BaseCommand extends Command {
 
                 await this.stopProcess()
             } catch (error) {
-                logger.error('There was an error shutting down Flowise...', error)
+                logger.error('There was an error shutting down Daisy...', error)
             }
         }
     }

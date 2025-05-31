@@ -128,6 +128,7 @@
     "dependencies": {
         "@supabase/auth-js": "^2.70.0",
         "@supabase/supabase-js": "^2.29.0",
-        "dotenv": "^16.0.0"
+        "dotenv": "^16.0.0",
+        "express-validator": "^7.0.1"
     }
 }

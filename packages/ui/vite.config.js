@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import dotenv from 'dotenv'
+import reactJsSupport from 'vite-plugin-react-js-support'
 
 export default defineConfig(async ({ mode }) => {
     let proxy = undefined
@@ -21,7 +22,13 @@ export default defineConfig(async ({ mode }) => {
 
     dotenv.config()
     return {
-        plugins: [react()],
+        plugins: [
+            react(),
+            reactJsSupport({
+                // Enable JSX support in .js files
+                jsx: true
+            })
+        ],
         resolve: {
             alias: {
                 '@': resolve(__dirname, 'src'),
@@ -43,9 +50,15 @@ export default defineConfig(async ({ mode }) => {
             outDir: './build'
         },
         esbuild: {
-          loader: 'jsx',
-          include: /src\/.*\.jsx?$/,
-          exclude: []
+            // Configure esbuild to handle JSX in .js files
+            jsxInject: `import React from 'react'`
+        },
+        optimizeDeps: {
+            esbuildOptions: {
+                loader: {
+                    '.js': 'jsx'
+                }
+            }
         },
         server: {
             open: true,
