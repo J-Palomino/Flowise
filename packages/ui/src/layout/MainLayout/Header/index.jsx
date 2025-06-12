@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { UserButton } from '@clerk/clerk-react'
+import { useAuth } from '@/store/context/AuthContext'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
@@ -71,6 +71,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 const Header = ({ handleLeftDrawerToggle }) => {
     const theme = useTheme()
     const navigate = useNavigate()
+    const { user } = useAuth()
 
     const customization = useSelector((state) => state.customization)
 
@@ -131,7 +132,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
             <Box sx={{ flexGrow: 1 }} />
             <MaterialUISwitch checked={isDark} onChange={changeDarkMode} />
             <Box sx={{ ml: 2 }}></Box>
-            <UserButton afterSignOutUrl="/login" />
+            <ProfileSection username={user?.name || user?.email || ''} />
         </>
     )
 }
