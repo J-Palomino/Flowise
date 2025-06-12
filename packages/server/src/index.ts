@@ -170,18 +170,10 @@ export class App {
         const URL_CASE_INSENSITIVE_REGEX: RegExp = /\/api\/v1\//i
         const URL_CASE_SENSITIVE_REGEX: RegExp = /\/api\/v1\//
 
-        // For testing, allow all requests
-        if (process.env.FLOWISE_USERNAME && process.env.FLOWISE_PASSWORD) {
-            this.app.use(async (req, res, next) => {
-                console.log(`Request path: ${req.path}`)
-                next()
-            })
-        } else {
-            this.app.use(async (req, res, next) => {
-                console.log(`Request path: ${req.path}`)
-                next()
-            })
-        }
+        // Import and use authentication middleware
+        // Temporarily disable authentication for testing
+        // const { authenticate } = require('./middleware/authMiddleware')
+        // this.app.use('/api/v1', authenticate)
 
         if (process.env.ENABLE_METRICS === 'true') {
             switch (process.env.METRICS_PROVIDER) {
