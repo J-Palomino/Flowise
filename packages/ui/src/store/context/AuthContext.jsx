@@ -12,16 +12,22 @@ export const AuthProvider = ({ children }) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        // Check if user is already logged in
-        const token = localStorage.getItem('token')
-        const storedUser = localStorage.getItem('user')
-        
-        if (token && storedUser) {
-            // Set the authorization header
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-            setUser(JSON.parse(storedUser))
+        // For testing, always set a test user
+        const testUser = {
+            id: '1234-5678-9012',
+            email: 'test@example.com',
+            name: 'Test User'
         }
+        const testToken = 'test-token-for-development'
         
+        // Store token and user in localStorage
+        localStorage.setItem('token', testToken)
+        localStorage.setItem('user', JSON.stringify(testUser))
+        
+        // Set the authorization header
+        axios.defaults.headers.common['Authorization'] = `Bearer ${testToken}`
+        
+        setUser(testUser)
         setLoading(false)
     }, [])
 

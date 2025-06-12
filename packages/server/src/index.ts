@@ -171,9 +171,8 @@ export class App {
         const URL_CASE_SENSITIVE_REGEX: RegExp = /\/api\/v1\//
 
         // Import and use authentication middleware
-        // Temporarily disable authentication for testing
-        // const { authenticate } = require('./middleware/authMiddleware')
-        // this.app.use('/api/v1', authenticate)
+        const { authenticate } = require('./middleware/authMiddleware')
+        this.app.use('/api/v1', authenticate)
 
         if (process.env.ENABLE_METRICS === 'true') {
             switch (process.env.METRICS_PROVIDER) {
