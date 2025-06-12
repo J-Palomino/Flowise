@@ -1,21 +1,20 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { useAuth } from '../store/context/AuthContext'
+import { SignedIn, SignedOut, useClerk } from '@clerk/clerk-react'
+import { CircularProgress, Box } from '@mui/material'
 
 const ProtectedRoute = () => {
-    const { isAuthenticated, loading } = useAuth()
+    const { session } = useClerk()
     
-    // If still loading, show nothing or a loading spinner
-    if (loading) {
-        return <div>Loading...</div>
-    }
-    
-    // If not authenticated, redirect to login
-    if (!isAuthenticated) {
-        return <Navigate to="/login" replace />
-    }
-    
-    // If authenticated, render the child routes
-    return <Outlet />
+    return (
+        <>
+            <SignedIn>
+                <Outlet />
+            </SignedIn>
+            <SignedOut>
+                <Navigate to="/login" replace />
+            </SignedOut>
+        </>
+    )
 }
 
 export default ProtectedRoute
