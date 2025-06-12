@@ -51,6 +51,7 @@ import exportImportApi from '@/api/exportimport'
 import useApi from '@/hooks/useApi'
 import { getErrorMessage } from '@/utils/errorHandler'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '@/store/context/AuthContext'
 
 const dataToExport = [
     'Agentflows',
@@ -167,7 +168,8 @@ ExportDialog.propTypes = {
 
 // ==============================|| PROFILE MENU ||============================== //
 
-const ProfileSection = ({ username, handleLogout }) => {
+const ProfileSection = ({ username }) => {
+    const { logout } = useAuth()
     const theme = useTheme()
 
     const customization = useSelector((state) => state.customization)
@@ -444,7 +446,7 @@ const ProfileSection = ({ username, handleLogout }) => {
                                                 {localStorage.getItem('username') && localStorage.getItem('password') && (
                                                     <ListItemButton
                                                         sx={{ borderRadius: `${customization.borderRadius}px` }}
-                                                        onClick={handleLogout}
+                                                        onClick={logout}
                                                     >
                                                         <ListItemIcon>
                                                             <IconLogout stroke={1.5} size='1.3rem' />
@@ -468,8 +470,7 @@ const ProfileSection = ({ username, handleLogout }) => {
 }
 
 ProfileSection.propTypes = {
-    username: PropTypes.string,
-    handleLogout: PropTypes.func
+    username: PropTypes.string
 }
 
 export default ProfileSection

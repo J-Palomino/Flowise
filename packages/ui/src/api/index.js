@@ -1,6 +1,7 @@
 import * as apikeyApi from './apikey.js';
 import * as assistantsApi from './assistants.js';
 import * as attachmentsApi from './attachments.js';
+import * as authApi from './auth.js';
 import * as chatflowsApi from './chatflows.js';
 import * as chatmessageApi from './chatmessage.js';
 import * as chatmessagefeedbackApi from './chatmessagefeedback.js';
@@ -26,6 +27,7 @@ const api = {
     apikey: apikeyApi,
     assistants: assistantsApi,
     attachments: attachmentsApi,
+    auth: authApi,
     chatflows: chatflowsApi,
     chatmessage: chatmessageApi,
     chatmessagefeedback: chatmessagefeedbackApi,

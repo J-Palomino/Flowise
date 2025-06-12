@@ -90,10 +90,25 @@ const checkIfChatflowIsValidForUploads = async (chatflowId: string): Promise<any
     }
 }
 
-const deleteChatflow = async (chatflowId: string): Promise<any> => {
+const deleteChatflow = async (chatflowId: string, userId?: string): Promise<any> => {
     try {
         const appServer = getRunningExpressApp()
-        const dbResponse = await appServer.AppDataSource.getRepository(ChatFlow).delete({ id: chatflowId })
+        
+        // Create delete criteria
+        const deleteCriteria: any = { id: chatflowId };
+        
+        // If userId is provided, add it to the criteria
+        if (userId) {
+            deleteCriteria.userId = userId;
+        }
+        
+        const dbResponse = await appServer.AppDataSource.getRepository(ChatFlow).delete(deleteCriteria);
+        
+        // If no rows were affected, the chatflow might not exist or doesn't belong to the user
+        if (dbResponse.affected === 0) {
+            throw new InternalFlowiseError(StatusCodes.NOT_FOUND, `Chatflow ${chatflowId} not found or you don't have permission to delete it`);
+        }
+        
         try {
             // Delete all uploads corresponding to this chatflow
             await removeFolderFromStorage(chatflowId)
@@ -119,10 +134,19 @@ const deleteChatflow = async (chatflowId: string): Promise<any> => {
     }
 }
 
-const getAllChatflows = async (type?: ChatflowType): Promise<ChatFlow[]> => {
+const getAllChatflows = async (type?: ChatflowType, userId?: string): Promise<ChatFlow[]> => {
     try {
         const appServer = getRunningExpressApp()
-        const dbResponse = await appServer.AppDataSource.getRepository(ChatFlow).find()
+        
+        // If userId is provided, filter by user
+        let query = appServer.AppDataSource.getRepository(ChatFlow).createQueryBuilder('chatflow');
+        
+        if (userId) {
+            query = query.where('chatflow.userId = :userId', { userId });
+        }
+        
+        const dbResponse = await query.getMany();
+        
         if (type === 'MULTIAGENT') {
             return dbResponse.filter((chatflow) => chatflow.type === 'MULTIAGENT')
         } else if (type === 'AGENTFLOW') {
@@ -166,12 +190,22 @@ const getChatflowByApiKey = async (apiKeyId: string, keyonly?: unknown): Promise
     }
 }
 
-const getChatflowById = async (chatflowId: string): Promise<any> => {
+const getChatflowById = async (chatflowId: string, userId?: string): Promise<any> => {
     try {
         const appServer = getRunningExpressApp()
-        const dbResponse = await appServer.AppDataSource.getRepository(ChatFlow).findOneBy({
-            id: chatflowId
-        })
+        
+        // Create query builder
+        let query = appServer.AppDataSource.getRepository(ChatFlow)
+            .createQueryBuilder('chatflow')
+            .where('chatflow.id = :id', { id: chatflowId });
+        
+        // If userId is provided, add user filter
+        if (userId) {
+            query = query.andWhere('chatflow.userId = :userId', { userId });
+        }
+        
+        const dbResponse = await query.getOne();
+        
         if (!dbResponse) {
             throw new InternalFlowiseError(StatusCodes.NOT_FOUND, `Chatflow ${chatflowId} not found in the database!`)
         }
@@ -184,9 +218,15 @@ const getChatflowById = async (chatflowId: string): Promise<any> => {
     }
 }
 
-const saveChatflow = async (newChatFlow: ChatFlow): Promise<any> => {
+const saveChatflow = async (newChatFlow: ChatFlow, userId?: string): Promise<any> => {
     try {
         const appServer = getRunningExpressApp()
+        
+        // Set the userId if provided
+        if (userId) {
+            newChatFlow.userId = userId;
+        }
+        
         let dbResponse: ChatFlow
         if (containsBase64File(newChatFlow)) {
             // we need a 2-step process, as we need to save the chatflow first and then update the file paths

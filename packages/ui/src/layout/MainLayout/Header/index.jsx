@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '@/store/context/AuthContext'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
@@ -70,6 +71,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 const Header = ({ handleLeftDrawerToggle }) => {
     const theme = useTheme()
     const navigate = useNavigate()
+    const { user } = useAuth()
 
     const customization = useSelector((state) => state.customization)
 
@@ -82,6 +84,8 @@ const Header = ({ handleLeftDrawerToggle }) => {
         localStorage.setItem('isDarkMode', !isDark)
     }
 
+    // This function is no longer needed as we're using AuthContext
+    // Kept for reference
     const signOutClicked = () => {
         localStorage.removeItem('username')
         localStorage.removeItem('password')
@@ -128,7 +132,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
             <Box sx={{ flexGrow: 1 }} />
             <MaterialUISwitch checked={isDark} onChange={changeDarkMode} />
             <Box sx={{ ml: 2 }}></Box>
-            <ProfileSection handleLogout={signOutClicked} username={localStorage.getItem('username') ?? ''} />
+            <ProfileSection username={user?.name || user?.email || ''} />
         </>
     )
 }

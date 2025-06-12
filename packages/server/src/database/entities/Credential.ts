@@ -1,6 +1,7 @@
 /* eslint-disable */
-import { Entity, Column, PrimaryGeneratedColumn, Index, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, Index, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm'
 import { ICredential } from '../../Interface'
+import { User } from './User'
 
 @Entity()
 export class Credential implements ICredential {
@@ -23,4 +24,12 @@ export class Credential implements ICredential {
     @Column({ type: 'timestamp' })
     @UpdateDateColumn()
     updatedDate: Date
+
+    // User relationship
+    @ManyToOne(() => User, user => user.credentials, { nullable: true })
+    @JoinColumn({ name: 'userId' })
+    user: User
+
+    @Column({ nullable: true })
+    userId: string
 }

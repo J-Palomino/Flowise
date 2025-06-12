@@ -14,6 +14,7 @@ import { CustomTemplate } from './CustomTemplate'
 import { Execution } from './Execution'
 import { Trigger } from './Trigger'
 import { TriggerEvent } from './TriggerEvent'
+import { User } from './User'
 
 export const entities = {
     ChatFlow,
@@ -31,5 +32,6 @@ export const entities = {
     CustomTemplate,
     Execution,
     Trigger,
-    TriggerEvent
+    TriggerEvent,
+    User
 }

@@ -2,9 +2,13 @@ import React from 'react'
 import App from '@/App'
 import { store } from '@/store'
 import { createRoot } from 'react-dom/client'
+import { setupAxiosInterceptors } from '@/utils/axiosSetup'
 
 // style + assets
 import '@/assets/scss/style.scss'
+
+// Set up axios interceptors for authentication
+setupAxiosInterceptors()
 
 // third party
 import { BrowserRouter } from 'react-router-dom'

@@ -36,6 +36,9 @@ importers:
       dotenv:
         specifier: ^16.0.0
         version: 16.5.0
+      pg:
+        specifier: ^8.16.0
+        version: 8.16.0
     devDependencies:
       '@babel/preset-env':
         specifier: ^7.19.4

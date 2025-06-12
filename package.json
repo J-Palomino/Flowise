@@ -127,6 +127,7 @@
     "packageManager": "pnpm@9.2.0+sha1.886364ebd6dae009284bebc56ed4296bb6dd557a",
     "dependencies": {
         "@supabase/supabase-js": "^2.29.0",
-        "dotenv": "^16.0.0"
+        "dotenv": "^16.0.0",
+        "pg": "^8.16.0"
     }
 }
